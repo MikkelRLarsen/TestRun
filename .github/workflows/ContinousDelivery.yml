@@ -71,4 +71,4 @@ jobs:
         run: docker pull ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
 
       - name: Run new container
-        run: docker run -d -p 8080:8080 --name ${{ env.CONTAINERNAME }} ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+        run: docker run -d -p 8001:8001 --name ${{ env.CONTAINERNAME }} ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
