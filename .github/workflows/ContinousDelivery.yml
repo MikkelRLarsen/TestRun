@@ -61,14 +61,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
+      - name: Pull latest image
+        run: docker pull ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          
       - name: Stop existing container
         run: docker stop ${{ env.CONTAINERNAME}} 2>$null
 
       - name: Remove existing container
         run: docker rm ${{ env.CONTAINERNAME }} 2>$null
         
-      - name: Pull latest image
-        run: docker pull ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-
       - name: Run new container
         run: docker run -d -p 8001:8001 --name ${{ env.CONTAINERNAME }} ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
